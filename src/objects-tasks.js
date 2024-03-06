@@ -17,8 +17,11 @@
  *    shallowCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
  *    shallowCopy({}) => {}
  */
-function shallowCopy(/* obj */) {
-  throw new Error('Not implemented');
+function shallowCopy(obj) {
+  // throw new Error('Not implemented');
+  const emptyObj = {};
+  const newObj = Object.assign(emptyObj, obj);
+  return newObj;
 }
 
 /**
@@ -32,8 +35,23 @@ function shallowCopy(/* obj */) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  // throw new Error('Not implemented');
+  // const emptyObj = {};
+  const newObj = {};
+  for (let i = 0; i < objects.length; i += 1) {
+    const getArr = Object.entries(objects[i]);
+    getArr.forEach((el) => {
+      if (!newObj[el[0]]) {
+        newObj[el[0]] = 0;
+      }
+      newObj[el[0]] += el[1];
+    });
+  }
+  return newObj;
+  // const newObj = new Map(arr);
+  // console.log(Object.fromEntries(newObj));
+  // return Object.fromEntries(newObj);
 }
 
 /**
@@ -49,8 +67,15 @@ function mergeObjects(/* objects */) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, 'age') => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  // throw new Error('Not implemented');
+  const newObj = obj;
+  keys.forEach((key) => {
+    if (keys.includes(key)) {
+      delete newObj[key];
+    }
+  });
+  return newObj;
 }
 
 /**
@@ -65,8 +90,9 @@ function removeProperties(/* obj, keys */) {
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 2}) => true
  *    compareObjects({a: 1, b: 2}, {a: 1, b: 3}) => false
  */
-function compareObjects(/* obj1, obj2 */) {
-  throw new Error('Not implemented');
+function compareObjects(obj1, obj2) {
+  // throw new Error('Not implemented');
+  return (JSON.stringify(obj1) === JSON.stringify(obj2))
 }
 
 /**
