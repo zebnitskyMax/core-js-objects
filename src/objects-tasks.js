@@ -106,8 +106,9 @@ function compareObjects(obj1, obj2) {
  *    isEmptyObject({}) => true
  *    isEmptyObject({a: 1}) => false
  */
-function isEmptyObject(/* obj */) {
-  throw new Error('Not implemented');
+function isEmptyObject(obj) {
+  // throw new Error('Not implemented');
+  return Object.keys(obj).length === 0;
 }
 
 /**
@@ -126,8 +127,10 @@ function isEmptyObject(/* obj */) {
  *    immutableObj.newProp = 'new';
  *    console.log(immutableObj) => {a: 1, b: 2}
  */
-function makeImmutable(/* obj */) {
-  throw new Error('Not implemented');
+function makeImmutable(obj) {
+  // throw new Error('Not implemented');
+  const objFreez = Object.freeze(obj);
+  return objFreez;
 }
 
 /**
@@ -140,8 +143,16 @@ function makeImmutable(/* obj */) {
  *    makeWord({ a: [0, 1], b: [2, 3], c: [4, 5] }) => 'aabbcc'
  *    makeWord({ H:[0], e: [1], l: [2, 3, 8], o: [4, 6], W:[5], r:[7], d:[9]}) => 'HelloWorld'
  */
-function makeWord(/* lettersObject */) {
-  throw new Error('Not implemented');
+function makeWord(lettersObject) {
+  // throw new Error('Not implemented');
+  const words = [];
+  Object.getOwnPropertyNames(lettersObject).forEach((el) =>
+    lettersObject[el].forEach((value) => {
+      words[value] = el;
+    })
+  );
+  const text = words.join('');
+  return text;
 }
 
 /**
